@@ -32,7 +32,6 @@ class Model2D
 		{
 			CumulativeAT = transform * CumulativeAT;
 			Vertices = InitialVertices * CumulativeAT.transpos();
-
 		}
 };
 #endif MODEL_2D_H
