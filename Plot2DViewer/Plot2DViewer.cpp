@@ -102,6 +102,11 @@ LRESULT _stdcall WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)		// 
 			scene.model.Apply(Translation(0, -1, 0));
 			break;
 		}
+		case 0x4A:
+		{
+			scene.model.Apply(Translation(0, 0, 1));
+			break;
+		}
 		case VK_OEM_COMMA:
 		{
 			scene.model.Apply(RotationY(M_PI_4 / 8));

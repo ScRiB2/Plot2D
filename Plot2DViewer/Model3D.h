@@ -20,13 +20,10 @@ public:
 	Matrix<int> GetEdges() { return Edges; }
 	
 	double GetVertexX(int number) {
-		return Vertices(number, 1);
+		return ProjectedVertices(number, 1)/ ProjectedVertices(number, 3);
 	}
 	double GetVertexY(int number) {
-		return Vertices(number, 2);
-	}
-	double GetVertexZ(int number) {
-		return Vertices(number, 3);
+		return ProjectedVertices(number, 2) / ProjectedVertices(number, 3);
 	}
 
 	void Apply(Matrix<> transform)
@@ -36,19 +33,13 @@ public:
 	}
 
 	void Project() {
-		double P[16] = {
+		double P[12] = {
 			1, 0, 0, 0,
 			0, 1, 0, 0,
-			0, 0, 0, 0,
-			0, 0, -1 / 16, 1
+			0, 0, 0, 1
 		};
-		Matrix<> ProjectedMatrix = Matrix<>(4, 4, P);
+		Matrix<> ProjectedMatrix = Matrix<>(3, 4, P);
 		ProjectedVertices = Vertices * ProjectedMatrix.transpos();
-	}
-
-	Matrix<> GetProjectedVertices() {
-		Project();
-		return ProjectedVertices;
 	}
 
 	Matrix<int> GetFaces() { return Faces; }

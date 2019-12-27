@@ -26,9 +26,8 @@ public:
 	void Render(HDC dc, bool axes = true) {
 		if (axes)
 			Axes(dc);
-
+		model.Project();
 		Matrix<int> edges = model.GetEdges();
-		Matrix<> vertices = model.GetProjectedVertices();
 		for (int i = 1; i <= edges.getRows(); i++) {
 			MoveTo(model.GetVertexX(edges(i, 1)), model.GetVertexY(edges(i, 1)));
 			LineTo(dc, model.GetVertexX(edges(i, 2)), model.GetVertexY(edges(i, 2)));
